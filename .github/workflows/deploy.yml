@@ -21,17 +21,17 @@ jobs:
                   cache: npm
             - name: Install dependencies
               run: npm install
-            - name: build
+            - name: Build Svelte
               env:
                   BASE_PATH: "/${{ github.event.repository.name }}"
-                  run: npm run build
+              run: npm run build
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
                   path: "build/"
 
     deploy:
-        needs: build_site
+        needs: build
         runs-on: ubuntu-latest
         permissions:
             pages: write
