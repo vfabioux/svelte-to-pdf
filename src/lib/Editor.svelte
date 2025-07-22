@@ -16,6 +16,7 @@
         apiUrl?: string;
         children?: Snippet;
         filename?: string;
+        routeKey?: string;
         routes?: EditorRoute[];
     }
 
@@ -24,12 +25,13 @@
         url: string;
     }
 
-    let { apiUrl, children, filename = "PDF", routes }: EditorProps = $props();
-    const isPrinting = page.url.searchParams.has("print");
+    let { apiUrl, children, filename = "PDF", routeKey = "", routes }: EditorProps = $props();
+    const isPrinting = apiUrl && page.url.searchParams.has("print");
     let isDownloading = $state(false);
     let serverStatus: "none" | "disconnected" | "connected" | "connecting" | "error" = $state(
         isPrinting ? "none" : "disconnected",
     );
+
     async function checkApi(url: string): Promise<boolean> {
         try {
             const result = await fetch(url + "?action=ping");
@@ -106,7 +108,7 @@
         <select
             title="Current page"
             onchange={(event) => (window.location.href = event.currentTarget.value)}
-            value={page.url.pathname}>
+            value={routeKey}>
             {#each routes as route}
                 <option value={route.url}>{route.label ?? route.url}</option>
             {/each}

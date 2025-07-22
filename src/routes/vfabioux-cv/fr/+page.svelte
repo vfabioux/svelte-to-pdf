@@ -1,6 +1,6 @@
 <script lang="ts">
     import { faAt, faCalendarDays, faCar, faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
-    import { Editor, Page } from "$lib";
+    import { Page } from "$lib";
     import Column from "../Column.svelte";
     import ColumnLayout from "../ColumnLayout.svelte";
     import Experience from "../Experience.svelte";
@@ -9,13 +9,16 @@
     import TagList from "../TagList.svelte";
     import { renderAge } from "../utils";
     import routes from "../../routes";
+    import MyEditor from "../../MyEditor.svelte";
+
+    const route = $derived(routes.find((route) => route.url === "/vfabioux-cv/fr")!);
 </script>
 
 <head>
     <title>Vincent Fabioux's french CV</title>
 </head>
 
-<Editor apiUrl="/" filename="vfabioux-cv.fr-FR" {routes}
+<MyEditor {route}
     ><Page>
         <Header
             name="Vincent Fabioux"
@@ -140,4 +143,4 @@
                 </ul></Column
             ></ColumnLayout
         ></Page
-    ></Editor>
+    ></MyEditor>
