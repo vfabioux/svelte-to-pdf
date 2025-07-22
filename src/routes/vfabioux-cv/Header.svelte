@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { base } from "$app/paths";
     import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
     import Fa from "svelte-fa";
 
@@ -22,7 +23,7 @@
             {/each}
         </ul>
     </div>
-    <img src={photo} alt={name} />
+    <img src={base + photo} alt={name} />
 </header>
 
 <style>
