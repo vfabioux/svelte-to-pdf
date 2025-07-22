@@ -1,6 +1,7 @@
 <script lang="ts">
     import download from "downloadjs";
     import type { Snippet } from "svelte";
+    import { base } from "$app/paths";
     import { page } from "$app/state";
     import Fa from "svelte-fa";
     import {
@@ -107,7 +108,7 @@
         <hr />
         <select
             title="Current page"
-            onchange={(event) => (window.location.href = event.currentTarget.value)}
+            onchange={(event) => (window.location.href = base + event.currentTarget.value)}
             value={routeKey}>
             {#each routes as route}
                 <option value={route.url}>{route.label ?? route.url}</option>

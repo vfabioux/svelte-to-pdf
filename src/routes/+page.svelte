@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { base } from "$app/paths";
     import routes from "./routes";
 
     let exampleRoutes = $derived(routes.filter((route) => route.url !== "/"));
@@ -14,7 +15,7 @@
         <h2>Browse examples</h2>
         <ul>
             {#each exampleRoutes as route}<li>
-                    <a href={route.url}><b>{route.label ?? route.url}</b><br /><span>{route.url}</span></a>
+                    <a href={base + route.url}><b>{route.label ?? route.url}</b><br /><span>{route.url}</span></a>
                 </li>{/each}
         </ul>
     </main>
